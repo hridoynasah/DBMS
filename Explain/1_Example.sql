@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS myBook;
+SHOW DATABASES;
+USE myBook;
+CREATE TABLE Books(
+    ISBN VARCHAR(20) PRIMARY KEY,
+    Title VARCHAR(50) NOT NULL,
+    PublicationsYear INT,
+    Summary TEXT
+)
