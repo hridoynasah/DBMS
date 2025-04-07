@@ -42,7 +42,7 @@ DELETE FROM STUDENT WHERE ID = 3;
 # DELETE it used for deleting a row, column or elements of row column
 # TRUNCATE (Cleaning the table) Table thakbe but data will be removed
 
-ALTER TABLE STUDENT
+# ALTER TABLE STUDENT
 -- ADD COLUMN SECTION VARCHAR(1) DEFAULT 'A';
 
 SELECT * FROM STUDENT;
