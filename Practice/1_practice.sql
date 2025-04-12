@@ -69,3 +69,19 @@ INSERT INTO Professors (ProfessorID, FirstName, LastName, Department, HireYear) 
 (203, 'Mark', 'Taylor', 'Mathematics', 2010),
 (204, 'Susan', 'Clark', 'Physics', 2012),
 (205, 'Laura', 'Adams', 'Chemistry', 2020); -- No course assigned
+
+# Inner join 
+
+SELECT s.FirstName, s.LastName, e.Grade
+FROM Students s
+INNER JOIN Enrollments e
+ON s.StudentID = e.StudentID;
+
+# Multiple Inner Join 
+
+SELECT s.FirstName, s.Major, c.Semester, e.Grade
+FROM Students s
+INNER JOIN Enrollments e
+ON s.StudentID = e.StudentID
+INNER JOIN Courses c
+ON e.CourseID = c.CourseID;
