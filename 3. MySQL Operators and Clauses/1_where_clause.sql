@@ -1,5 +1,5 @@
-CREATE DATABASE myfrnd;
-USE myfrnd;
+CREATE DATABASE example_db;
+USE example_db;
 
 CREATE TABLE CUSTOMERS (
    ID INT NOT NULL,
@@ -12,21 +12,15 @@ CREATE TABLE CUSTOMERS (
 
 INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) VALUES 
 (1, 'Ramesh', 32, 'Ahmedabad', 2000.00 ),
-(2, 'Ramesh', 20, 'Ahmedabad', 2000.00 ),
-(3, 'Khilan', 25, 'Delhi', 1500.00 ),
-(4, 'Kaushik', 23, 'Kota', 2000.00 ),
-(5, 'Chaitali', 25, 'Mumbai', 6500.00 ),
-(6, 'Hardik', 27, 'Bhopal', 8500.00 ),
-(7, 'Komal', 22, 'Hyderabad', 4500.00 ),
-(8, 'Muffy', 24, 'Indore', 10000.00 );
+(2, 'Khilan', 25, 'Delhi', 1500.00 ),
+(3, 'Kaushik', 23, 'Kota', 2000.00 ),
+(4, 'Chaitali', 25, 'Mumbai', 6500.00 ),
+(5, 'Hardik', 27, 'Bhopal', 8500.00 ),
+(6, 'Komal', 22, 'Hyderabad', 4500.00 ),
+(7, 'Muffy', 24, 'Indore', 10000.00 );
 
+SELECT * FROM CUSTOMERS;
 
-Select * From CUSTOMERS;
+SELECT * FROM CUSTOMERS WHERE AGE > 23;
 
-SELECT * FROM CUSTOMERS WHERE AGE > 25;
-
-SELECT * FROM CUSTOMERS LIMIT 4;
-
-SELECT * FROM CUSTOMERS LIMIT 2, 4;
-SELECT * FROM CUSTOMERS WHERE AGE > 21 LIMIT 2;
-TRUNCATE CUSTOMERS;
+SELECT * FROM CUSTOMERS WHERE SALARY >= 4500.00;
