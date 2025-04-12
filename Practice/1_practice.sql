@@ -85,3 +85,29 @@ INNER JOIN Enrollments e
 ON s.StudentID = e.StudentID
 INNER JOIN Courses c
 ON e.CourseID = c.CourseID;
+
+
+-- INNER JOIN: Students with their Enrollments
+SELECT s.FirstName, s.LastName, e.Grade
+FROM Students s
+INNER JOIN Enrollments e ON s.StudentID = e.StudentID;
+
+-- LEFT JOIN: All Students, including those without Enrollments
+SELECT s.FirstName, s.LastName, e.Grade
+FROM Students s
+LEFT JOIN Enrollments e ON s.StudentID = e.StudentID;
+
+-- RIGHT JOIN: All Enrollments, including those without Students
+SELECT s.FirstName, s.LastName, e.Grade
+FROM Students s
+RIGHT JOIN Enrollments e ON s.StudentID = e.StudentID;
+
+-- FULL JOIN: All Students and Enrollments
+SELECT s.FirstName, s.LastName, e.Grade
+FROM Students s
+FULL JOIN Enrollments e ON s.StudentID = e.StudentID;
+
+-- Bonus: Courses and Professors by Department (to practice with another pair)
+SELECT c.CourseName, p.FirstName, p.LastName
+FROM Courses c
+LEFT JOIN Professors p ON c.Department = p.Department;
