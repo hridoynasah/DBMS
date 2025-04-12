@@ -25,3 +25,9 @@ ALTER TABLE Customer MODIFY COLUMN bd_year DATE;
 ALTER TABLE Customer CHANGE COLUMN bd_year Birth_Date DATE;
 
 DELETE FROM Customer WHERE ID = 3;
+
+# The MySQL truncate table query can be used to remove all the records but not the table itself.
+
+TRUNCATE TABLE Customer;
+
+DROP TABLE Customer;
