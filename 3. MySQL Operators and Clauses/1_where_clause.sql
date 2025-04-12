@@ -1,0 +1,32 @@
+CREATE DATABASE myfrnd;
+USE myfrnd;
+
+CREATE TABLE CUSTOMERS (
+   ID INT NOT NULL,
+   NAME VARCHAR (20) NOT NULL,
+   AGE INT NOT NULL,
+   ADDRESS CHAR (25),
+   SALARY DECIMAL (18, 2),       
+   PRIMARY KEY (ID)
+);
+
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) VALUES 
+(1, 'Ramesh', 32, 'Ahmedabad', 2000.00 ),
+(2, 'Ramesh', 20, 'Ahmedabad', 2000.00 ),
+(3, 'Khilan', 25, 'Delhi', 1500.00 ),
+(4, 'Kaushik', 23, 'Kota', 2000.00 ),
+(5, 'Chaitali', 25, 'Mumbai', 6500.00 ),
+(6, 'Hardik', 27, 'Bhopal', 8500.00 ),
+(7, 'Komal', 22, 'Hyderabad', 4500.00 ),
+(8, 'Muffy', 24, 'Indore', 10000.00 );
+
+
+Select * From CUSTOMERS;
+
+SELECT * FROM CUSTOMERS WHERE AGE > 25;
+
+SELECT * FROM CUSTOMERS LIMIT 4;
+
+SELECT * FROM CUSTOMERS LIMIT 2, 4;
+SELECT * FROM CUSTOMERS WHERE AGE > 21 LIMIT 2;
+TRUNCATE CUSTOMERS;
