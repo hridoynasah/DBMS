@@ -1,8 +1,8 @@
-CREATE DATABASE ExampleDB;
+CREATE DATABASE IF NOT EXISTS ExampleDB;
 
 USE ExampleDB;
 
-CREATE TABLE CUSTOMERS (
+CREATE TABLE IF NOT EXISTS CUSTOMERS (
    ID INT NOT NULL,
    NAME VARCHAR(15) NOT NULL,
    AGE INT NOT NULL,
@@ -26,7 +26,24 @@ SELECT ID, NAME, SALARY FROM CUSTOMERS;
 
 SELECT * FROM Customers_View;
 
-CREATE OR REPLACE Customers_View AS
+CREATE OR REPLACE VIEW Customers_View AS
 SELECT ID, NAME, SALARY FROM CUSTOMERS 
 WHERE SALARY > 2500;
 
+CREATE OR REPLACE VIEW Customers_View AS
+SELECT ID, NAME, SALARY FROM CUSTOMERS 
+WHERE SALARY > 2500
+WITH CHECK OPTION;
+
+UPDATE Customers_View 
+SET SALARY = 1000 
+WHERE ID = 5;
+# This will fail with an error like:
+# Error Code: 1369. CHECK OPTION failed 'database_name.Customers_View'
+INSERT INTO Customers_View (ID, NAME, SALARY) 
+VALUES (3, 'Charlie', 2000);
+# This will fail with an error like:
+# Error Code: 1369. CHECK OPTION failed 'database_name.Customers_View'
+UPDATE Customers_View 
+SET SALARY = 1000 
+WHERE ID = 1;
