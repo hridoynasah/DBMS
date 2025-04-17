@@ -39,3 +39,27 @@ WHERE Salary > 50000;
 
 SELECT * FROM Manager;
 
+CREATE TABLE Department(
+    DeptID INT PRIMARY KEY,
+    DeptName VARCHAR(50) NOT NULL,
+    Location VARCHAR(50)
+);
+
+INSERT INTO Department (DeptID, DeptName, Location) 
+VALUES 
+(1, 'HR', 'New York'),
+(2, 'Finance', 'London'),
+(3, 'IT', 'San Francisco'),
+(4, 'Marketing', 'Chicago');
+
+CREATE VIEW CEO AS
+SELECT e.Name, e.Salary, d.DeptName FROM
+Employee e, Department d WHERE e.id = d.DeptID;
+
+SELECT * FROM CEO;
+
+CREATE OR REPLACE VIEW CEO AS
+SELECT e.Name, e.Salary FROM
+Employee e, Department d WHERE e.id = d.DeptID;
+
+SELECT * FROM CEO;
