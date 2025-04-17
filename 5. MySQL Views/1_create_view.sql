@@ -1,65 +1,49 @@
-# View is virtual table 
+CREATE DATABASE IF NOT EXISTS ExampleDB;
 
-CREATE DATABASE myExampleDB;
-SHOW DATABASES;
-USE myExampleDB;
-CREATE TABLE Student(
-    ID INT PRIMARY KEY,
-    Name VARCHAR(50) NOT NULL,
-    CGPA DECIMAL
-);
-INSERT INTO Student (ID, Name, CGPA) 
-VALUES 
-(1, 'Alice', 3.8),
-(2, 'Bob', 3.5),
-(3, 'Charlie', 3.9);
+USE ExampleDB;
 
-# Data access control
-# Reduce complexity
-# Security
-
-CREATE TABLE Employee(
-    ID INT PRIMARY KEY,
-    Name VARCHAR(50) NOT NULL,
-    Salary DECIMAL NOT NULL
+CREATE TABLE IF NOT EXISTS CUSTOMERS (
+   ID INT NOT NULL,
+   NAME VARCHAR(15) NOT NULL,
+   AGE INT NOT NULL,
+   ADDRESS VARCHAR(25),
+   SALARY DECIMAL(10, 2),
+   PRIMARY KEY(ID)
 );
 
-INSERT INTO Employee (ID, Name, Salary) 
-VALUES 
-(1, 'David', 50000),
-(2, 'Emma', 60000),
-(3, 'Frank', 55000),
-(4, 'Grace', 70000),
-(5, 'Hannah', 65000);
+INSERT INTO CUSTOMERS VALUES 
+(1, 'Ramesh', '32', 'Ahmedabad', 2000),
+(2, 'Khilan', '25', 'Delhi', 1500),
+(3, 'Kaushik', '23', 'Kota', 2500),
+(4, 'Chaitali', '26', 'Mumbai', 6500),
+(5, 'Hardik','27', 'Bhopal', 8500),
+(6, 'Komal', '22', 'MP', 9000),
+(7, 'Muffy', '24', 'Indore', 5500);
 
-CREATE VIEW Manager
-AS
-SELECT Name, Salary FROM Employee
-WHERE Salary > 50000;
+CREATE VIEW Customers_View AS
+SELECT ID, NAME, SALARY FROM CUSTOMERS;
 
-SELECT * FROM Manager;
 
-CREATE TABLE Department(
-    DeptID INT PRIMARY KEY,
-    DeptName VARCHAR(50) NOT NULL,
-    Location VARCHAR(50)
-);
+SELECT * FROM Customers_View;
 
-INSERT INTO Department (DeptID, DeptName, Location) 
-VALUES 
-(1, 'HR', 'New York'),
-(2, 'Finance', 'London'),
-(3, 'IT', 'San Francisco'),
-(4, 'Marketing', 'Chicago');
+CREATE OR REPLACE VIEW Customers_View AS
+SELECT ID, NAME, SALARY FROM CUSTOMERS 
+WHERE SALARY > 2500;
 
-CREATE VIEW CEO AS
-SELECT e.Name, e.Salary, d.DeptName FROM
-Employee e, Department d WHERE e.id = d.DeptID;
+CREATE OR REPLACE VIEW Customers_View AS
+SELECT ID, NAME, SALARY FROM CUSTOMERS 
+WHERE SALARY > 2500
+WITH CHECK OPTION;
 
-SELECT * FROM CEO;
-
-CREATE OR REPLACE VIEW CEO AS
-SELECT e.Name, e.Salary FROM
-Employee e, Department d WHERE e.id = d.DeptID;
-
-SELECT * FROM CEO;
+UPDATE Customers_View 
+SET SALARY = 1000 
+WHERE ID = 5;
+# This will fail with an error like:
+# Error Code: 1369. CHECK OPTION failed 'database_name.Customers_View'
+INSERT INTO Customers_View (ID, NAME, SALARY) 
+VALUES (3, 'Charlie', 2000);
+# This will fail with an error like:
+# Error Code: 1369. CHECK OPTION failed 'database_name.Customers_View'
+UPDATE Customers_View 
+SET SALARY = 1000 
+WHERE ID = 1;
