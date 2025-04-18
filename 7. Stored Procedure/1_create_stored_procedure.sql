@@ -33,11 +33,12 @@ DELIMITER ;
 
 CALL Get_Student();
 
-CREATE OR REPLACE PROCEDURE Get_Student(IN age INT)
-AS
+DELIMITER //
+CREATE PROCEDURE Get_Student_Age(IN age INT)
 BEGIN
     SELECT * FROM Student WHERE Student.age = age;
-END;
+END //
+DELIMITER ;
 
 -- Call the second stored procedure
-CALL Get_Student(23);
+CALL Get_Student_Age(23);
