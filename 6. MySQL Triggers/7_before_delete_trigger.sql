@@ -20,7 +20,7 @@ FOR EACH ROW
 BEGIN
     INSERT INTO EMP_Audit (Action, ID, Name, Salary)
     VALUES ('DELETE', OLD.ID, OLD.Name, OLD.Salary);
-END;//
+END //
 
 DELIMITER ;
 
