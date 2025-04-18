@@ -1,8 +1,8 @@
 
-
+USE uniDB;
 
 -- Create the EMP_Audit table
-CREATE TABLE EMP_Audit (
+CREATE TABLE EMP_delete_log (
     Audit_ID INT AUTO_INCREMENT PRIMARY KEY,
     Action VARCHAR(50),
     ID INT,
@@ -25,6 +25,6 @@ END;//
 DELIMITER ;
 
 -- Test the trigger
-INSERT INTO EMP (ID, Name, Salary) VALUES (1, 'Alice', 20000.00);
-DELETE FROM EMP WHERE ID = 1;
+INSERT INTO EMP (ID, Name, Salary) VALUES (4, 'Alice', 20000.00);
+DELETE FROM EMP WHERE ID = 4;
 SELECT * FROM EMP_Audit;
