@@ -1,0 +1,32 @@
+CREATE DATABASE EmployeeDB;
+USE EmployeeDB;
+
+CREATE TABLE EMP(
+    ID INT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Salary DECIMAL(7,2)
+);
+
+CREATE TABLE Backup(
+    ID INT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Salary DECIMAL(7,2)
+);
+
+
+CREATE TRIGGER T
+AFTER INSERT ON EMP
+FOR EACH ROW
+BEGIN
+    INSERT INTO Backup (ID, Name, Salary)
+    VALUES (NEW.ID, NEW.Name, NEW.Salary);
+END;
+
+
+DROP TABLE IF EXISTS BACKUP;
+
+-- Insert a row into EMP
+INSERT INTO EMP (ID, Name, Salary) VALUES (1, 'John', 50000.00);
+
+-- Check the Backup table
+SELECT * FROM Backup;
