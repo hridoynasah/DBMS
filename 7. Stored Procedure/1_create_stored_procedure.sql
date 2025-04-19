@@ -24,13 +24,14 @@ INSERT INTO Student (ID, Name, Age, Section) VALUES
 
 DELIMITER //
 
-CREATE PROCEDURE Get_Student()
+CREATE OR REPLACE PROCEDURE Get_Student()
 BEGIN
     SELECT * FROM Student;
 END //
 
 DELIMITER ;
 
+drop PROCEDURE Get_Student;
 CALL Get_Student();
 
 DELIMITER //
@@ -42,3 +43,22 @@ DELIMITER ;
 
 -- Call the second stored procedure
 CALL Get_Student_Age(23);
+
+DELIMITER //
+
+CREATE PROCEDURE count_students(
+    IN sec VARCHAR(2),
+    OUT res INT
+)
+BEGIN
+    SELECT COUNT(*) INTO res
+    FROM Student
+    WHERE Student.Section = sec;
+END//
+
+DELIMITER ;
+drop Procedure count_students;
+
+-- Call the procedure
+CALL count_students('A', @res);
+SELECT @res;
